@@ -7,6 +7,7 @@ import Stats from "./components/Stats";
 import Features from "./components/Features";
 import Timeline from "./components/Timeline";
 import CTA from "./components/CTA";
+import Spotlight from "./components/Spotlight";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -20,7 +21,10 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[#050816] text-white overflow-x-hidden">
+    <>
+    <Spotlight />
+
+    <div className="relative z-10 min-h-screen bg-[#050816] text-white overflow-x-hidden">
       <Navbar />
       <Hero />
       <Stats />
@@ -28,6 +32,7 @@ function App() {
       <Timeline />
       <CTA />
     </div>
+    </>
   );
 }
 

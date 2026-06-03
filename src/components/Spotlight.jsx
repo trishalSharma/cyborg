@@ -1,28 +1,69 @@
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 export default function Spotlight() {
-  const [pos, setPos] = useState({ x: 0, y: 0 });
+  const [position, setPosition] = useState({
+    x: -1000,
+    y: -1000,
+  });
 
   useEffect(() => {
-    const move = (e) => {
-      setPos({ x: e.clientX, y: e.clientY });
+    let animationFrame;
+
+    const handleMove = (e) => {
+      cancelAnimationFrame(animationFrame);
+
+      animationFrame = requestAnimationFrame(() => {
+        setPosition({
+          x: e.clientX,
+          y: e.clientY,
+        });
+      });
     };
 
-    window.addEventListener("mousemove", move);
+    window.addEventListener("mousemove", handleMove);
 
-    return () => window.removeEventListener("mousemove", move);
+    return () => {
+      window.removeEventListener("mousemove", handleMove);
+      cancelAnimationFrame(animationFrame);
+    };
   }, []);
 
   return (
-    <div
-      className="pointer-events-none fixed inset-0 z-0"
-      style={{
-        background: `radial-gradient(
-          400px circle at ${pos.x}px ${pos.y}px,
-          rgba(0,255,255,.15),
-          transparent 70%
-        )`,
-      }}
-    />
+    <>
+      {/* Main Spotlight */}
+      <motion.div
+        className="pointer-events-none fixed inset-0 z-0"
+        animate={{
+          background: `radial-gradient(
+            350px circle at ${position.x}px ${position.y}px,
+            rgba(0,255,255,0.12),
+            transparent 70%
+          )`,
+        }}
+        transition={{
+          type: "tween",
+          ease: "linear",
+          duration: 0.08,
+        }}
+      />
+
+      {/* Secondary Glow */}
+      <motion.div
+        className="pointer-events-none fixed inset-0 z-0"
+        animate={{
+          background: `radial-gradient(
+            150px circle at ${position.x}px ${position.y}px,
+            rgba(0,255,255,0.08),
+            transparent 80%
+          )`,
+        }}
+        transition={{
+          type: "tween",
+          ease: "linear",
+          duration: 0.08,
+        }}
+      />
+    </>
   );
 }

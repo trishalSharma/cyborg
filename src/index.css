@@ -1,8 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap');
 @import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
   background: #050816;
   color: white;
   font-family: 'Orbitron', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Cyber Grid */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -2;
+
+  background-image:
+    linear-gradient(rgba(0,255,255,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,255,255,.04) 1px, transparent 1px);
+
+  background-size: 60px 60px;
+}
+
+/* Scanline Effect */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      transparent,
+      transparent 2px,
+      rgba(255,255,255,.015) 3px
+    );
+
+  opacity: 0.6;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050816;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0,255,255,.5);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0,255,255,.8);
+}
+
+/* Text Selection */
+::selection {
+  background: rgba(0,255,255,.3);
+  color: white;
+}
+
+/* Glowing Utility */
+.glow-cyan {
+  box-shadow:
+    0 0 10px rgba(0,255,255,.5),
+    0 0 20px rgba(0,255,255,.3),
+    0 0 40px rgba(0,255,255,.2);
+}
+
+/* Smooth Images */
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* Better Focus States */
+button,
+a {
+  transition: all 0.3s ease;
+}
+
+/* Floating Animation */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Pulse Glow */
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 10px rgba(0,255,255,.4);
+  }
+
+  50% {
+    box-shadow:
+      0 0 30px rgba(0,255,255,.8),
+      0 0 60px rgba(0,255,255,.4);
+  }
+
+  100% {
+    box-shadow: 0 0 10px rgba(0,255,255,.4);
+  }
+}
+
+.pulse-glow {
+  animation: pulseGlow 3s infinite;
 }
