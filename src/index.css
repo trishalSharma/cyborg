@@ -1,22 +1,5 @@
 @import "tailwindcss";
 
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap');
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-
-  background-image:
-    linear-gradient(rgba(0,255,255,.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,255,255,.05) 1px, transparent 1px);
-
-  background-size: 60px 60px;
-
-  pointer-events: none;
-  z-index: -1;
-}
-
 body {
   margin: 0;
   background: #050816;

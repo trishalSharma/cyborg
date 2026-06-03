@@ -1,6 +1,6 @@
 import { useState } from "react";
+
 import Loader from "./components/Loader";
-import Spotlight from "./components/Spotlight";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Stats from "./components/Stats";
@@ -12,13 +12,15 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   if (loading) {
-    return <Loader onFinish={() => setLoading(false)} />;
+    return (
+      <Loader
+        onFinish={() => setLoading(false)}
+      />
+    );
   }
 
   return (
-    <div className="min-h-screen bg-[#050816] text-white">
-      <Spotlight />
-
+    <div className="min-h-screen bg-[#050816] text-white overflow-x-hidden">
       <Navbar />
       <Hero />
       <Stats />
